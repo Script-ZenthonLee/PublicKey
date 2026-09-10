@@ -1,0 +1,448 @@
+-- Configuration
+local VALID_KEYS = { "K13OnTop" }
+local PAYLOAD_URL = "https://example.com/your-script.lua"
+
+local function createKeySystemUI()
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Name = "K13KeySystem"
+    screenGui.ResetOnSpawn = false
+    screenGui.DisplayOrder = 99999
+    screenGui.IgnoreGuiInset = true
+    screenGui.Parent = game:GetService("CoreGui")
+
+    -- Main Background Frame
+    local mainContainer = Instance.new("Frame")
+    mainContainer.Size = UDim2.new(1, 0, 1, 0)
+    mainContainer.Position = UDim2.new(0, 0, 0, 0)
+    mainContainer.BackgroundColor3 = Color3.fromRGB(2, 0, 6)
+    mainContainer.BorderSizePixel = 0
+    mainContainer.Parent = screenGui
+
+    local bgGradient = Instance.new("UIGradient")
+    bgGradient.Color = ColorSequence.new({
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(2, 0, 6)),
+        ColorSequenceKeypoint.new(0.5, Color3.fromRGB(8, 0, 18)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(2, 0, 6)),
+    })
+    bgGradient.Rotation = 135
+    bgGradient.Parent = mainContainer
+
+    -- Top Border Line
+    local topBorder = Instance.new("Frame")
+    topBorder.Size = UDim2.new(1, 0, 0, 3)
+    topBorder.Position = UDim2.new(0, 0, 0, 0)
+    topBorder.BackgroundColor3 = Color3.fromRGB(180, 0, 255)
+    topBorder.BorderSizePixel = 0
+    topBorder.ZIndex = 3
+    topBorder.Parent = mainContainer
+
+    local topBorderGradient = Instance.new("UIGradient")
+    topBorderGradient.Color = ColorSequence.new({
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 0, 0)),
+        ColorSequenceKeypoint.new(0.5, Color3.fromRGB(180, 0, 255)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 0)),
+    })
+    topBorderGradient.Parent = topBorder
+
+    -- Bottom Border Line
+    local bottomBorder = Instance.new("Frame")
+    bottomBorder.Size = UDim2.new(1, 0, 0, 3)
+    bottomBorder.Position = UDim2.new(0, 0, 1, -3)
+    bottomBorder.BackgroundColor3 = Color3.fromRGB(180, 0, 255)
+    bottomBorder.BorderSizePixel = 0
+    bottomBorder.ZIndex = 3
+    bottomBorder.Parent = mainContainer
+
+    local bottomBorderGradient = Instance.new("UIGradient")
+    bottomBorderGradient.Color = ColorSequence.new({
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 0, 0)),
+        ColorSequenceKeypoint.new(0.5, Color3.fromRGB(180, 0, 255)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 0)),
+    })
+    bottomBorderGradient.Parent = bottomBorder
+
+    -- Matrix Digital Rain Effect
+    task.spawn(function()
+        local charset = { "0", "1", "K", "1", "3", "@", "#", "$", "%", "^", "&", "*", "!", "?", "<", ">", "~", "|" }
+
+        for columnIndex = 1, 45 do
+            task.spawn(function()
+                task.wait(math.random() * 3)
+
+                while screenGui and screenGui.Parent do
+                    local charLabel = Instance.new("TextLabel")
+                    charLabel.Size = UDim2.new(0, 16, 0, 16)
+                    charLabel.Position = UDim2.new(0, (columnIndex - 1) * 24, 0, -20)
+                    charLabel.BackgroundTransparency = 1
+                    charLabel.Text = charset[math.random(1, #charset)]
+                    charLabel.Font = Enum.Font.Code
+                    charLabel.TextSize = 12
+                    charLabel.TextColor3 = Color3.fromRGB(100, 0, 160)
+                    charLabel.TextTransparency = 0.4
+                    charLabel.ZIndex = 2
+                    charLabel.Parent = mainContainer
+
+                    local fallSpeed = math.random(2, 6) / 100
+                    local totalSteps = math.random(25, 55)
+
+                    for step = 1, totalSteps do
+                        if not charLabel.Parent then break end
+                        charLabel.Position = UDim2.new(0, (columnIndex - 1) * 24, 0, -20 + step * 16)
+                        charLabel.Text = charset[math.random(1, #charset)]
+
+                        local progress = step / totalSteps
+                        charLabel.TextColor3 = Color3.fromRGB(
+                            math.floor(60 + progress * 120),
+                            0,
+                            math.floor(120 + progress * 135)
+                        )
+                        charLabel.TextTransparency = 0.2 + progress * 0.5
+                        task.wait(fallSpeed)
+                    end
+
+                    pcall(function() charLabel:Destroy() end)
+                    task.wait(math.random() * 1.5)
+                end
+            end)
+        end
+    end)
+
+    -- Floating Particle Background Effect
+    task.spawn(function()
+        while screenGui and screenGui.Parent do
+            task.spawn(function()
+                local size = math.random(2, 6)
+                local particle = Instance.new("Frame")
+                particle.Size = UDim2.new(0, size, 0, size)
+                particle.Position = UDim2.new(math.random(), 0, 1, 0)
+                particle.BackgroundColor3 = Color3.fromHSV(0.75 + math.random() * 0.1, 1, 1)
+                particle.BackgroundTransparency = math.random(2, 5) * 0.1
+                particle.BorderSizePixel = 0
+                particle.ZIndex = 2
+
+                local corner = Instance.new("UICorner")
+                corner.CornerRadius = UDim.new(1, 0)
+                corner.Parent = particle
+                particle.Parent = mainContainer
+
+                local xDrift = (math.random() - 0.5) * 0.1
+
+                for _ = 1, 60 do
+                    if not particle.Parent then break end
+                    particle.Position = UDim2.new(
+                        particle.Position.X.Scale + xDrift * 0.016, 0,
+                        particle.Position.Y.Scale - 0.008, 0
+                    )
+                    particle.BackgroundTransparency = particle.BackgroundTransparency + 0.015
+                    if particle.BackgroundTransparency >= 1 then break end
+                    task.wait(0.05)
+                end
+
+                pcall(function() particle:Destroy() end)
+            end)
+            task.wait(0.08)
+        end
+    end)
+
+    -- Background Grid Lines
+    for lineIndex = 1, 60 do
+        local gridLine = Instance.new("Frame")
+        gridLine.Size = UDim2.new(1, 0, 0, 1)
+        gridLine.Position = UDim2.new(0, 0, lineIndex / 60, 0)
+        gridLine.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+        gridLine.BackgroundTransparency = 0.88
+        gridLine.BorderSizePixel = 0
+        gridLine.ZIndex = 4
+        gridLine.Parent = mainContainer
+    end
+
+    -- Center Card Frame
+    local cardFrame = Instance.new("Frame")
+    cardFrame.Size = UDim2.new(0, 620, 0, 460)
+    cardFrame.Position = UDim2.new(0.5, -310, 0.5, -230)
+    cardFrame.BackgroundColor3 = Color3.fromRGB(6, 0, 12)
+    cardFrame.BorderSizePixel = 0
+    cardFrame.ZIndex = 5
+    cardFrame.Parent = screenGui
+
+    local cardCorner = Instance.new("UICorner")
+    cardCorner.CornerRadius = UDim.new(0, 18)
+    cardCorner.Parent = cardFrame
+
+    local cardGradient = Instance.new("UIGradient")
+    cardGradient.Color = ColorSequence.new({
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(12, 0, 22)),
+        ColorSequenceKeypoint.new(0.5, Color3.fromRGB(6, 0, 12)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(12, 0, 22)),
+    })
+    cardGradient.Rotation = 135
+    cardGradient.Parent = cardFrame
+
+    local cardStroke = Instance.new("UIStroke")
+    cardStroke.Color = Color3.fromRGB(180, 0, 255)
+    cardStroke.Thickness = 2.5
+    cardStroke.Parent = cardFrame
+
+    -- Left Brand Sidebar
+    local sidebar = Instance.new("Frame")
+    sidebar.Size = UDim2.new(0, 218, 1, 0)
+    sidebar.Position = UDim2.new(0, 0, 0, 0)
+    sidebar.BackgroundTransparency = 1
+    sidebar.ZIndex = 6
+    sidebar.Parent = cardFrame
+
+    local avatarFrame = Instance.new("Frame")
+    avatarFrame.Size = UDim2.new(0, 160, 0, 160)
+    avatarFrame.Position = UDim2.new(0.5, -80, 0, 30)
+    avatarFrame.BackgroundColor3 = Color3.fromRGB(10, 0, 18)
+    avatarFrame.BorderSizePixel = 0
+    avatarFrame.ZIndex = 7
+    avatarFrame.Parent = sidebar
+
+    local avatarCorner = Instance.new("UICorner")
+    avatarCorner.CornerRadius = UDim.new(0, 12)
+    avatarCorner.Parent = avatarFrame
+
+    local avatarStroke = Instance.new("UIStroke")
+    avatarStroke.Color = Color3.fromRGB(180, 0, 255)
+    avatarStroke.Thickness = 2.5
+    avatarStroke.Parent = avatarFrame
+
+    local avatarImage = Instance.new("ImageLabel")
+    avatarImage.Size = UDim2.new(1, 0, 1, 0)
+    avatarImage.BackgroundTransparency = 1
+    avatarImage.Image = "rbxthumb://type=Asset&id=114411506285484&w=420&h=420"
+    avatarImage.ScaleType = Enum.ScaleType.Fit
+    avatarImage.ZIndex = 8
+    avatarImage.Parent = avatarFrame
+
+    local brandTitle = Instance.new("TextLabel")
+    brandTitle.Size = UDim2.new(1, 0, 0, 30)
+    brandTitle.Position = UDim2.new(0, 0, 0, 200)
+    brandTitle.BackgroundTransparency = 1
+    brandTitle.Text = "K13 ALWAYS ON TOP"
+    brandTitle.Font = Enum.Font.LuckiestGuy
+    brandTitle.TextSize = 17
+    brandTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+    brandTitle.ZIndex = 7
+    brandTitle.Parent = sidebar
+
+    local brandSub = Instance.new("TextLabel")
+    brandSub.Size = UDim2.new(1, 0, 0, 20)
+    brandSub.Position = UDim2.new(0, 0, 0, 235)
+    brandSub.BackgroundTransparency = 1
+    brandSub.Text = "BY PRIME JELO"
+    brandSub.Font = Enum.Font.LuckiestGuy
+    brandSub.TextSize = 14
+    brandSub.TextColor3 = Color3.fromRGB(200, 150, 255)
+    brandSub.ZIndex = 7
+    brandSub.Parent = sidebar
+
+    local versionLabel = Instance.new("TextLabel")
+    versionLabel.Size = UDim2.new(1, 0, 0, 16)
+    versionLabel.Position = UDim2.new(0, 0, 0, 258)
+    versionLabel.BackgroundTransparency = 1
+    versionLabel.Text = "K13 HUB V2.0"
+    versionLabel.Font = Enum.Font.LuckiestGuy
+    versionLabel.TextSize = 11
+    versionLabel.TextColor3 = Color3.fromRGB(80, 40, 110)
+    versionLabel.ZIndex = 7
+    versionLabel.Parent = sidebar
+
+    -- Right Content Area
+    local contentArea = Instance.new("Frame")
+    contentArea.Size = UDim2.new(0, 378, 1, 0)
+    contentArea.Position = UDim2.new(0, 230, 0, 0)
+    contentArea.BackgroundTransparency = 1
+    contentArea.ZIndex = 6
+    contentArea.Parent = cardFrame
+
+    local titleHeader = Instance.new("TextLabel")
+    titleHeader.Size = UDim2.new(1, -20, 0, 40)
+    titleHeader.Position = UDim2.new(0, 10, 0, 25)
+    titleHeader.BackgroundTransparency = 1
+    titleHeader.Text = "K13 | KEY SYSTEM"
+    titleHeader.Font = Enum.Font.LuckiestGuy
+    titleHeader.TextSize = 26
+    titleHeader.TextColor3 = Color3.fromRGB(255, 255, 255)
+    titleHeader.ZIndex = 7
+    titleHeader.Parent = contentArea
+
+    -- Typewriter Header Animated Label
+    local animatedSubtitle = Instance.new("TextLabel")
+    animatedSubtitle.Size = UDim2.new(1, -20, 0, 20)
+    animatedSubtitle.Position = UDim2.new(0, 10, 0, 72)
+    animatedSubtitle.BackgroundTransparency = 1
+    animatedSubtitle.Text = ""
+    animatedSubtitle.Font = Enum.Font.Code
+    animatedSubtitle.TextSize = 12
+    animatedSubtitle.TextColor3 = Color3.fromRGB(180, 120, 230)
+    animatedSubtitle.TextXAlignment = Enum.TextXAlignment.Left
+    animatedSubtitle.ZIndex = 6
+    animatedSubtitle.Parent = contentArea
+
+    task.spawn(function()
+        task.wait(0.5)
+        local targetMessage = "ENTER YOUR KEY TO ACCESS K13 HUB..."
+        for charIndex = 1, #targetMessage do
+            if not animatedSubtitle.Parent then break end
+            animatedSubtitle.Text = string.sub(targetMessage, 1, charIndex)
+            task.wait(0.035)
+        end
+
+        while screenGui and screenGui.Parent do
+            task.wait(0.5)
+            if not animatedSubtitle.Parent then break end
+            local currentText = animatedSubtitle.Text
+            if currentText:sub(-1) == "_" then
+                animatedSubtitle.Text = string.sub(currentText, 1, -2)
+            else
+                animatedSubtitle.Text = currentText .. "_"
+            end
+        end
+    end)
+
+    -- Key Input Box
+    local inputContainer = Instance.new("Frame")
+    inputContainer.Size = UDim2.new(0.92, 0, 0, 44)
+    inputContainer.Position = UDim2.new(0.04, 0, 0, 130)
+    inputContainer.BackgroundColor3 = Color3.fromRGB(10, 0, 20)
+    inputContainer.BorderSizePixel = 0
+    inputContainer.ZIndex = 6
+    inputContainer.Parent = contentArea
+
+    local inputCorner = Instance.new("UICorner")
+    inputCorner.CornerRadius = UDim.new(0, 8)
+    inputCorner.Parent = inputContainer
+
+    local inputStroke = Instance.new("UIStroke")
+    inputStroke.Color = Color3.fromRGB(100, 0, 150)
+    inputStroke.Thickness = 1.5
+    inputStroke.Parent = inputContainer
+
+    local keyInput = Instance.new("TextBox")
+    keyInput.Size = UDim2.new(1, -20, 1, 0)
+    keyInput.Position = UDim2.new(0, 10, 0, 0)
+    keyInput.BackgroundTransparency = 1
+    keyInput.PlaceholderText = "ENTER KEY HERE..."
+    keyInput.Text = ""
+    keyInput.Font = Enum.Font.LuckiestGuy
+    keyInput.TextSize = 15
+    keyInput.TextColor3 = Color3.fromRGB(255, 255, 255)
+    keyInput.PlaceholderColor3 = Color3.fromRGB(120, 80, 160)
+    keyInput.ZIndex = 7
+    keyInput.Parent = inputContainer
+
+    keyInput.Focused:Connect(function()
+        inputStroke.Color = Color3.fromRGB(200, 0, 255)
+        inputStroke.Thickness = 2
+    end)
+
+    keyInput.FocusLost:Connect(function()
+        inputStroke.Color = Color3.fromRGB(100, 0, 150)
+        inputStroke.Thickness = 1.5
+    end)
+
+    -- Submit Button
+    local submitButton = Instance.new("TextButton")
+    submitButton.Size = UDim2.new(0.92, 0, 0, 44)
+    submitButton.Position = UDim2.new(0.04, 0, 0, 185)
+    submitButton.BackgroundColor3 = Color3.fromRGB(140, 0, 200)
+    submitButton.BorderSizePixel = 0
+    submitButton.Text = "SUBMIT KEY"
+    submitButton.Font = Enum.Font.LuckiestGuy
+    submitButton.TextSize = 18
+    submitButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    submitButton.ZIndex = 6
+    submitButton.Parent = contentArea
+
+    local submitCorner = Instance.new("UICorner")
+    submitCorner.CornerRadius = UDim.new(0, 8)
+    submitCorner.Parent = submitButton
+
+    -- Progress Indicator Bar
+    local progressBarBackground = Instance.new("Frame")
+    progressBarBackground.Size = UDim2.new(0.92, 0, 0, 8)
+    progressBarBackground.Position = UDim2.new(0.04, 0, 0, 260)
+    progressBarBackground.BackgroundColor3 = Color3.fromRGB(15, 0, 25)
+    progressBarBackground.BorderSizePixel = 0
+    progressBarBackground.ZIndex = 6
+    progressBarBackground.Parent = contentArea
+
+    local progressFill = Instance.new("Frame")
+    progressFill.Size = UDim2.new(0.22, 0, 1, 0)
+    progressFill.BackgroundColor3 = Color3.fromRGB(180, 0, 255)
+    progressFill.BorderSizePixel = 0
+    progressFill.ZIndex = 7
+    progressFill.Parent = progressBarBackground
+
+    -- Status Feedback Label
+    local statusLabel = Instance.new("TextLabel")
+    statusLabel.Size = UDim2.new(0.92, 0, 0, 22)
+    statusLabel.Position = UDim2.new(0.04, 0, 0, 365)
+    statusLabel.BackgroundTransparency = 1
+    statusLabel.Text = ""
+    statusLabel.Font = Enum.Font.LuckiestGuy
+    statusLabel.TextSize = 13
+    statusLabel.TextColor3 = Color3.fromRGB(255, 80, 80)
+    statusLabel.ZIndex = 6
+    statusLabel.Parent = contentArea
+
+    return screenGui, keyInput, submitButton, statusLabel, progressFill
+end
+
+-- Logic Execution
+local mainGui, keyInput, submitButton, statusLabel, progressFill = createKeySystemUI()
+local accessGrantedSignal = Instance.new("BindableEvent")
+
+submitButton.MouseButton1Click:Connect(function()
+    local enteredKey = keyInput.Text
+    local keyMatches = false
+
+    for _, validKey in ipairs(VALID_KEYS) do
+        if enteredKey == validKey then
+            keyMatches = true
+            break
+        end
+    end
+
+    if keyMatches then
+        statusLabel.TextColor3 = Color3.fromRGB(0, 255, 120)
+        statusLabel.Text = "ACCESS GRANTED! LOADING K13 HUB..."
+
+        submitButton.Active = false
+        submitButton.Text = "LOADING..."
+
+        task.spawn(function()
+            progressFill.Position = UDim2.new(0, 0, 0, 0)
+
+            for step = 1, 100 do
+                if not progressFill.Parent then break end
+                progressFill.Size = UDim2.new(step / 100, 0, 1, 0)
+                task.wait(0.015)
+            end
+
+            task.wait(0.4)
+            mainGui:Destroy()
+            accessGrantedSignal:Fire()
+        end)
+    else
+        statusLabel.TextColor3 = Color3.fromRGB(255, 60, 60)
+        statusLabel.Text = "ACCESS DENIED! INVALID KEY."
+
+        task.spawn(function()
+            for _ = 1, 8 do
+                if not submitButton.Parent then break end
+                submitButton.Position = UDim2.new(0.04, math.random(-6, 6), 0, 185)
+                task.wait(0.04)
+            end
+            submitButton.Position = UDim2.new(0.04, 0, 0, 185)
+        end)
+
+        keyInput.Text = ""
+    end
+end)
+
+-- Wait for UI access signal before loading payload
+accessGrantedSignal.Event:Wait()
+loadstring(game:HttpGet(PAYLOAD_URL))()
