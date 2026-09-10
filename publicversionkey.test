@@ -1,7 +1,7 @@
 local v1 = { "FNOPOnTop" }
 
 local function f1()
-  local k13KeySystem = Instance.new("ScreenGui")
+  local FNOPKeySystem = Instance.new("ScreenGui")
   FNOPKeySystem.Name = "FNOPKeySystem"
   FNOPKeySystem.ResetOnSpawn = false
   FNOPKeySystem.DisplayOrder = 99999
