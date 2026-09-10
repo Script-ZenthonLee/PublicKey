@@ -2,18 +2,18 @@ local v1 = { "FNOPOnTop" }
 
 local function f1()
   local k13KeySystem = Instance.new("ScreenGui")
-  k13KeySystem.Name = "K13KeySystem"
-  k13KeySystem.ResetOnSpawn = false
-  k13KeySystem.DisplayOrder = 99999
-  k13KeySystem.IgnoreGuiInset = true
-  k13KeySystem.Parent = game.CoreGui
+  FNOPKeySystem.Name = "FNOPKeySystem"
+  FNOPKeySystem.ResetOnSpawn = false
+  FNOPKeySystem.DisplayOrder = 99999
+  FNOPKeySystem.IgnoreGuiInset = true
+  FNOPKeySystem.Parent = game.CoreGui
 
   local frame = Instance.new("Frame")
   frame.Size = UDim2.new(1, 0, 1, 0)
   frame.Position = UDim2.new(0, 0, 0, 0)
   frame.BackgroundColor3 = Color3.fromRGB(2, 0, 6)
   frame.BorderSizePixel = 0
-  frame.Parent = k13KeySystem
+  frame.Parent = FNOPKeySystem
 
   local uiGradient = Instance.new("UIGradient")
 
@@ -73,7 +73,7 @@ local function f1()
       task.spawn(function()
         task.wait(math.random() * 3)
 
-        while k13KeySystem and k13KeySystem.Parent do
+        while FNOPKeySystem and FNOPKeySystem.Parent do
           local textLabel = Instance.new("TextLabel")
           textLabel.Size = UDim2.new(0, 16, 0, 16)
           textLabel.Position = UDim2.new(0, (v3 - 1) * 24, 0, -20)
@@ -116,7 +116,7 @@ local function f1()
   end)
 
   task.spawn(function()
-    while k13KeySystem and k13KeySystem.Parent do
+    while FNOPKeySystem and FNOPKeySystem.Parent do
       task.spawn(function()
         local v7 = math.random(2, 6)
 
@@ -177,7 +177,7 @@ local function f1()
   frame6.BackgroundColor3 = Color3.fromRGB(6, 0, 12)
   frame6.BorderSizePixel = 0
   frame6.ZIndex = 5
-  frame6.Parent = k13KeySystem
+  frame6.Parent = FNOPKeySystem
 
   local uiCorner2 = Instance.new("UICorner")
   uiCorner2.CornerRadius = UDim.new(0, 18)
@@ -338,7 +338,7 @@ local function f1()
   textLabel6.Parent = frame12
 
   task.spawn(function()
-    while k13KeySystem and k13KeySystem.Parent do
+    while FNOPKeySystem and FNOPKeySystem.Parent do
       task.wait(math.random(2, 6))
 
       for n = 1, math.random(3, 5) do
@@ -555,7 +555,7 @@ local function f1()
     local v9 = 1
     local total = 0
 
-    while k13KeySystem and k13KeySystem.Parent and true do
+    while FNOPKeySystem and FNOPKeySystem.Parent and true do
       total = total + v9 * 0.025
 
       if total >= 0.78 then
