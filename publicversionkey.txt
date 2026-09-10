@@ -1,9 +1,4 @@
--- ===================================================
---  Nova Hub
---  Discord: https://discord.gg/WmGx944myQ
--- ===================================================
-
-local v1 = { "K13OnTop" }
+local v1 = { "FNOPOnTop" }
 
 local function f1()
   local k13KeySystem = Instance.new("ScreenGui")
@@ -69,7 +64,7 @@ local function f1()
 
   task.spawn(function()
     local v2 = {
-      "0", "1", "K", "1", "3", "@", "#", "$", "%", "^", "&", "*", "!", "?", "<", ">", "~", "|",
+      "0", "1", "F", "N", "O", "P", "@", "#", "$", "%", "^", "&", "*", "!", "?", "<", ">", "~", "|",
     }
 
     for i = 1, 45 do
@@ -269,7 +264,7 @@ local function f1()
   imageLabel.Size = UDim2.new(1, 0, 1, 0)
   imageLabel.Position = UDim2.new(0, 0, 0, 0)
   imageLabel.BackgroundTransparency = 1
-  imageLabel.Image = "rbxthumb://type=Asset&id=114411506285484&w=420&h=420"
+  imageLabel.Image = "https://www.roblox.com/Thumbs/Asset.ashx?width=420&height=420&assetId=113281701497572"
   imageLabel.ScaleType = Enum.ScaleType.Fit
   imageLabel.ZIndex = 8
   imageLabel.Parent = frame10
@@ -278,7 +273,7 @@ local function f1()
   textLabel2.Size = UDim2.new(1, 0, 0, 30)
   textLabel2.Position = UDim2.new(0, 0, 0, 200)
   textLabel2.BackgroundTransparency = 1
-  textLabel2.Text = "K13 ALWAYS ON TOP"
+  textLabel2.Text = "KENZOU ALWAYS ON TOP"
   textLabel2.Font = Enum.Font.LuckiestGuy
   textLabel2.TextSize = 17
   textLabel2.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -289,7 +284,7 @@ local function f1()
   textLabel3.Size = UDim2.new(1, 0, 0, 20)
   textLabel3.Position = UDim2.new(0, 0, 0, 235)
   textLabel3.BackgroundTransparency = 1
-  textLabel3.Text = "BY PRIME JELO"
+  textLabel3.Text = "BY PRIME KENZOUU"
   textLabel3.Font = Enum.Font.LuckiestGuy
   textLabel3.TextSize = 14
   textLabel3.TextColor3 = Color3.fromRGB(200, 150, 255)
@@ -300,7 +295,7 @@ local function f1()
   textLabel4.Size = UDim2.new(1, 0, 0, 16)
   textLabel4.Position = UDim2.new(0, 0, 0, 258)
   textLabel4.BackgroundTransparency = 1
-  textLabel4.Text = "K13 HUB V2.0"
+  textLabel4.Text = "FNOP HUB V2.0"
   textLabel4.Font = Enum.Font.LuckiestGuy
   textLabel4.TextSize = 11
   textLabel4.TextColor3 = Color3.fromRGB(80, 40, 110)
@@ -325,7 +320,7 @@ local function f1()
   textLabel5.Size = UDim2.new(1, 0, 1, 0)
   textLabel5.Position = UDim2.new(0, 3, 0, 3)
   textLabel5.BackgroundTransparency = 1
-  textLabel5.Text = "K13 | KEY SYSTEM"
+  textLabel5.Text = "FNOP | KEY SYSTEM"
   textLabel5.Font = Enum.Font.LuckiestGuy
   textLabel5.TextSize = 26
   textLabel5.TextColor3 = Color3.fromRGB(50, 0, 80)
@@ -335,7 +330,7 @@ local function f1()
   local textLabel6 = Instance.new("TextLabel")
   textLabel6.Size = UDim2.new(1, 0, 1, 0)
   textLabel6.BackgroundTransparency = 1
-  textLabel6.Text = "K13 | KEY SYSTEM"
+  textLabel6.Text = "FNOP | KEY SYSTEM"
   textLabel6.Font = Enum.Font.LuckiestGuy
   textLabel6.TextSize = 26
   textLabel6.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -379,12 +374,12 @@ local function f1()
   task.spawn(function()
     task.wait(0.5)
 
-    for i6 = 1, #"ENTER YOUR KEY TO ACCESS K13 HUB..." do
+    for i6 = 1, #"ENTER YOUR KEY TO ACCESS FNOP HUB..." do
       if not textLabel7.Parent then
         break
       end
 
-      textLabel7.Text = string.sub("ENTER YOUR KEY TO ACCESS K13 HUB...", 1, i6)
+      textLabel7.Text = string.sub("ENTER YOUR KEY TO ACCESS FNOP HUB...", 1, i6)
       task.wait(0.035)
     end
 
@@ -593,7 +588,7 @@ local function f1()
   textButton2.Position = UDim2.new(0.04, 0, 0, 308)
   textButton2.BackgroundColor3 = Color3.fromRGB(80, 0, 120)
   textButton2.BorderSizePixel = 0
-  textButton2.Text = "TIKTOK.COM/@FVCK.YOU00"
+  textButton2.Text = "TIKTOK.COM/@KENZXOUU.OFFICIAL
   textButton2.Font = Enum.Font.LuckiestGuy
   textButton2.TextSize = 15
   textButton2.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -618,14 +613,14 @@ local function f1()
   end)
 
   textButton2.MouseButton1Click:Connect(function()
-    pcall(function() setclipboard("https://www.tiktok.com/@fvck.you00") end)
+    pcall(function() setclipboard("https://www.tiktok.com/@kenzxouu.official") end)
 
     textButton2.Text = "FOLLOW ME! THANK YOU PRE!"
     textButton2.TextColor3 = Color3.fromRGB(255, 255, 255)
 
     task.wait(2.5)
 
-    textButton2.Text = "TIKTOK.COM/@FVCK.YOU00"
+    textButton2.Text = "TIKTOK.COM/@KENZXOUU.OFFICIAL"
     textButton2.TextColor3 = Color3.fromRGB(255, 255, 255)
   end)
 
@@ -665,7 +660,7 @@ v12.MouseButton1Click:Connect(function()
 
   if v16 then
     v13.TextColor3 = Color3.fromRGB(0, 255, 120)
-    v13.Text = "ACCESS GRANTED! LOADING K13 HUB..."
+    v13.Text = "ACCESS GRANTED! LOADING FNOP HUB..."
 
     v12.Active = false
     v12.Text = "LOADING..."
@@ -708,4 +703,4 @@ v12.MouseButton1Click:Connect(function()
 end)
 
 bindableEvent.Event:Wait()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/GeloXOshiru/Mm-Pub-Ver/refs/heads/main/Lua"))()
+loadstring(game:HttpGet("https://slh-hub.lovable.app/raw/kyomba2-obfuscated"))()
