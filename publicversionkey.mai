@@ -173,7 +173,7 @@ local function f1()
 
   local frame6 = Instance.new("Frame")
   frame6.Size = UDim2.new(0, 620, 0, 460)
-  frame6.Position = UDim2.new(0.5, -310, 0.5, -206)
+  frame6.Position = UDim2.new(0.5, -310, 0.5, -204)
   frame6.BackgroundColor3 = Color3.fromRGB(6, 0, 12)
   frame6.BorderSizePixel = 0
   frame6.ZIndex = 5
@@ -295,7 +295,7 @@ local function f1()
   textLabel4.Size = UDim2.new(1, 0, 0, 16)
   textLabel4.Position = UDim2.new(0, 0, 0, 258)
   textLabel4.BackgroundTransparency = 1
-  textLabel4.Text = "FNOP HUB V2.0"
+  textLabel4.Text = "V2.0"
   textLabel4.Font = Enum.Font.LuckiestGuy
   textLabel4.TextSize = 11
   textLabel4.TextColor3 = Color3.fromRGB(80, 40, 110)
