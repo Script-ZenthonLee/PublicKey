@@ -173,7 +173,7 @@ local function f1()
 
   local frame6 = Instance.new("Frame")
   frame6.Size = UDim2.new(0, 620, 0, 460)
-  frame6.Position = UDim2.new(0.5, -310, 0.5, -195)
+  frame6.Position = UDim2.new(0.5, -310, 0.5, -180)
   frame6.BackgroundColor3 = Color3.fromRGB(6, 0, 12)
   frame6.BorderSizePixel = 0
   frame6.ZIndex = 5
@@ -330,7 +330,7 @@ local function f1()
   local textLabel6 = Instance.new("TextLabel")
   textLabel6.Size = UDim2.new(1, 0, 1, 0)
   textLabel6.BackgroundTransparency = 1
-  textLabel6.Text = "FNOP | KEY SYSTEM"
+  textLabel6.Text = "KENZOU | KEY SYSTEM"
   textLabel6.Font = Enum.Font.LuckiestGuy
   textLabel6.TextSize = 26
   textLabel6.TextColor3 = Color3.fromRGB(255, 255, 255)
