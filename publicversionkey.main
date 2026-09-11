@@ -173,7 +173,7 @@ local function f1()
 
   local frame6 = Instance.new("Frame")
   frame6.Size = UDim2.new(0, 620, 0, 460)
-  frame6.Position = UDim2.new(0.5, -310, 0.5, -175)
+  frame6.Position = UDim2.new(0.5, -310, 0.5, -184)
   frame6.BackgroundColor3 = Color3.fromRGB(6, 0, 12)
   frame6.BorderSizePixel = 0
   frame6.ZIndex = 5
